@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<!--
+  Collapse Factor v0.1.0
+  Copyright (C) 2026 Shawn Rapaz - https://shoukugames.org/
+  This program is free software: you can redistribute it and/or modify it
+  under the terms of the GNU General Public License version 3.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Collapse Factor</title>
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="world"></canvas>
+  <div id="vignette"></div>
+
+  <!-- ================= TITLE ================= -->
+  <section id="scr-title" class="screen">
+    <div class="title-wrap">
+      <h1 class="logo" aria-label="Collapse Factor">
+        <span class="logo-top"><span>C</span><span>O</span><span>L</span><span>L</span><span>A</span><span>P</span><span>S</span><span class="fall">E</span></span>
+        <span class="logo-bottom">FACTOR</span>
+      </h1>
+      <div class="logo-jp">コラプス・ファクター</div>
+      <p class="subtitle" data-i18n="title_sub"></p>
+      <div class="menu">
+        <button class="btn btn-primary big" id="btn-play" data-i18n="play"></button>
+        <button class="btn" id="btn-tutorial" data-i18n="tutorial"></button>
+        <button class="btn" id="btn-parents" data-i18n="parents"></button>
+        <button class="btn" id="btn-credits" data-i18n="credits"></button>
+        <button class="btn btn-ghost" id="btn-quit" data-i18n="quit"></button>
+      </div>
+    </div>
+    <div class="settings-card glass">
+      <div class="set-row">
+        <span class="set-label" data-i18n="language"></span>
+        <div class="seg" id="seg-lang">
+          <button data-v="en">English</button><button data-v="ja">日本語</button>
+        </div>
+      </div>
+      <div class="set-row">
+        <span class="set-label" data-i18n="difficulty"></span>
+        <div class="seg" id="seg-diff">
+          <button data-v="easy" data-i18n="easy"></button><button data-v="medium" data-i18n="medium"></button><button data-v="hard" data-i18n="hard"></button>
+        </div>
+      </div>
+      <div class="set-row">
+        <span class="set-label" data-i18n="bgm"></span>
+        <div class="seg" id="seg-bgm">
+          <button data-v="on" data-i18n="on"></button><button data-v="off" data-i18n="off"></button>
+        </div>
+      </div>
+      <div class="set-row">
+        <span class="set-label" data-i18n="sfx"></span>
+        <div class="seg" id="seg-sfx">
+          <button data-v="on" data-i18n="on"></button><button data-v="off" data-i18n="off"></button>
+        </div>
+      </div>
+    </div>
+    <div class="title-foot">
+      <span class="age-badge">10+</span><span data-i18n="ages"></span>
+      <span class="sep">·</span><span>v0.1.0</span>
+      <span class="sep">·</span><span>© 2026 Shawn Rapaz · GPL-3.0</span>
+    </div>
+  </section>
+
+  <!-- ================= LEVEL SELECT ================= -->
+  <section id="scr-levels" class="screen hidden">
+    <div class="panel glass wide">
+      <div class="panel-head">
+        <button class="btn btn-ghost small" data-back data-i18n="back"></button>
+        <h2 data-i18n="level_select"></h2>
+        <span class="chip" id="levels-diff"></span>
+      </div>
+      <div class="level-grid" id="level-grid"></div>
+    </div>
+  </section>
+
+  <!-- ================= TUTORIAL ================= -->
+  <section id="scr-tutorial" class="screen hidden">
+    <div class="panel glass wide tut">
+      <div class="panel-head">
+        <button class="btn btn-ghost small" data-back data-i18n="back"></button>
+        <h2 data-i18n="tut_title"></h2>
+        <span class="chip" id="tut-count"></span>
+      </div>
+      <div class="tut-body">
+        <canvas id="tut-canvas"></canvas>
+        <div class="tut-text">
+          <h3 id="tut-heading"></h3>
+          <p id="tut-text"></p>
+        </div>
+      </div>
+      <div class="tut-nav">
+        <button class="btn" id="tut-prev" data-i18n="prev"></button>
+        <div class="dots" id="tut-dots"></div>
+        <button class="btn btn-primary" id="tut-next" data-i18n="next"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PARENTS ================= -->
+  <section id="scr-parents" class="screen hidden">
+    <div class="panel glass wide scroll">
+      <div class="panel-head">
+        <button class="btn btn-ghost small" data-back data-i18n="back"></button>
+        <h2 data-i18n="parents_title"></h2>
+        <div class="seg small" id="seg-pdiff">
+          <button data-v="easy" data-i18n="easy"></button><button data-v="medium" data-i18n="medium"></button><button data-v="hard" data-i18n="hard"></button>
+        </div>
+      </div>
+      <p class="muted" data-i18n="parents_intro"></p>
+      <div class="stat-grid" id="parent-stats"></div>
+      <h3 data-i18n="per_level"></h3>
+      <div class="table-wrap"><table class="tbl" id="parent-levels"></table></div>
+      <h3 data-i18n="recent_fail"></h3>
+      <div class="table-wrap"><table class="tbl" id="parent-fails"></table></div>
+      <p class="tip-box" data-i18n="parent_tip"></p>
+      <button class="btn btn-danger small" id="btn-reset" data-i18n="reset_progress"></button>
+    </div>
+  </section>
+
+  <!-- ================= CREDITS ================= -->
+  <section id="scr-credits" class="screen hidden">
+    <div class="panel glass credits">
+      <div class="panel-head">
+        <button class="btn btn-ghost small" data-back data-i18n="back"></button>
+        <h2 data-i18n="credits_title"></h2>
+        <span></span>
+      </div>
+      <div class="credit-logo">COLLAPSE FACTOR</div>
+      <dl class="credit-list">
+        <dt data-i18n="release"></dt><dd>v0.1.0</dd>
+        <dt data-i18n="date"></dt><dd id="credit-date">2026-11-07</dd>
+        <dt data-i18n="created_by"></dt><dd>Shawn Rapaz</dd>
+        <dt data-i18n="developed_with"></dt><dd>Claude Code (Anthropic)</dd>
+        <dt data-i18n="website"></dt><dd><a href="#" data-link="https://shoukugames.org/">https://shoukugames.org/</a></dd>
+        <dt data-i18n="contact"></dt><dd><a href="#" data-link="mailto:info@shoukugames.org">info@shoukugames.org</a></dd>
+        <dt data-i18n="license"></dt><dd>GNU General Public License v3.0 (GPL-3.0)</dd>
+      </dl>
+      <p class="muted small-text" data-i18n="license_text"></p>
+      <p class="muted small-text"><span data-i18n="music_credit"></span><br><span data-i18n="font_credit"></span></p>
+      <p class="muted small-text"><span class="age-badge">10+</span> <span data-i18n="ages"></span></p>
+    </div>
+  </section>
+
+  <!-- ================= GAME HUD ================= -->
+  <div id="hud" class="hidden">
+    <div class="hud-top">
+      <div class="hud-left glass">
+        <div class="hud-level"><span data-i18n="level"></span> <b id="hud-level-num">1</b><span class="dim">/20</span></div>
+        <div class="hud-theme" id="hud-theme"></div>
+      </div>
+      <div class="hud-center glass" id="hud-info"></div>
+      <div class="hud-right">
+        <div class="timer glass" id="timer">
+          <svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" class="t-bg"/><circle cx="22" cy="22" r="19" class="t-fg" id="timer-ring"/></svg>
+          <span id="timer-text">120</span>
+        </div>
+        <button class="btn btn-go" id="btn-test" data-i18n="test_now"></button>
+        <button class="btn icon" id="btn-pause" title="Pause">❚❚</button>
+      </div>
+    </div>
+    <div class="hint glass" id="hint"></div>
+    <div class="hud-bottom glass" id="palette-bar">
+      <div class="palette" id="palette"></div>
+      <div class="tools">
+        <button class="btn tool" id="tool-undo"><span class="ico">↶</span><span data-i18n="undo"></span></button>
+        <button class="btn tool" id="tool-erase"><span class="ico">✕</span><span data-i18n="erase"></span></button>
+        <button class="btn tool" id="tool-clear"><span class="ico">⟲</span><span data-i18n="clear"></span></button>
+      </div>
+    </div>
+    <div class="test-bar glass hidden" id="test-bar">
+      <div class="meter"><span data-i18n="wind_now"></span><b id="m-wind">0</b><small data-i18n="km_h"></small></div>
+      <div class="meter"><span id="m-load-label" data-i18n="load_now"></span><b id="m-load">0</b><small>kg</small></div>
+      <label class="check"><input type="checkbox" id="chk-stress" checked> <span data-i18n="stress_view"></span></label>
+      <div class="seg small" id="seg-speed"><button data-v="1">1×</button><button data-v="2">2×</button></div>
+    </div>
+    <div class="banner" id="banner"></div>
+  </div>
+
+  <!-- ================= MODALS ================= -->
+  <div id="modal-brief" class="modal hidden">
+    <div class="panel glass brief">
+      <div class="brief-head">
+        <div class="brief-num"><span data-i18n="level"></span> <b id="brief-num"></b></div>
+        <h2 id="brief-theme"></h2>
+        <span class="chip" id="brief-test"></span>
+      </div>
+      <p class="brief-goal" id="brief-goal"></p>
+      <div class="brief-cols">
+        <div id="brief-loads"></div>
+        <div>
+          <h4 data-i18n="materials"></h4>
+          <div id="brief-mats" class="brief-mats"></div>
+        </div>
+      </div>
+      <ul class="brief-tips">
+        <li id="brief-road" data-i18n="brief_road"></li>
+        <li data-i18n="brief_anchor"></li>
+        <li data-i18n="brief_time"></li>
+      </ul>
+      <div class="keys muted" data-i18n="keys_help"></div>
+      <button class="btn btn-primary big" id="btn-brief-go" data-i18n="start_building"></button>
+    </div>
+  </div>
+
+  <div id="modal-pause" class="modal hidden">
+    <div class="panel glass narrow">
+      <h2 data-i18n="paused"></h2>
+      <button class="btn btn-primary" id="btn-resume" data-i18n="resume"></button>
+      <button class="btn" id="btn-restart" data-i18n="restart_level"></button>
+      <button class="btn" id="btn-fullscreen" data-i18n="fullscreen"></button>
+      <div class="pause-toggles">
+        <div class="set-row"><span class="set-label" data-i18n="bgm"></span><div class="seg small" id="seg-bgm2"><button data-v="on" data-i18n="on"></button><button data-v="off" data-i18n="off"></button></div></div>
+        <div class="set-row"><span class="set-label" data-i18n="sfx"></span><div class="seg small" id="seg-sfx2"><button data-v="on" data-i18n="on"></button><button data-v="off" data-i18n="off"></button></div></div>
+      </div>
+      <button class="btn btn-ghost" id="btn-quit-menu" data-i18n="quit_menu"></button>
+    </div>
+  </div>
+
+  <div id="modal-result" class="modal hidden">
+    <div class="panel glass result">
+      <h2 id="res-title"></h2>
+      <div class="stars" id="res-stars"><span>★</span><span>★</span><span>★</span></div>
+      <div class="res-body">
+        <div class="res-map">
+          <h4 data-i18n="weak_map"></h4>
+          <canvas id="res-canvas"></canvas>
+          <div class="res-stats" id="res-stats"></div>
+        </div>
+        <div class="res-text">
+          <p class="res-opener" id="res-opener"></p>
+          <h4 id="res-h1" data-i18n="weak_points"></h4>
+          <ol id="res-lines"></ol>
+          <h4 id="res-h2" data-i18n="how_improve"></h4>
+          <ul id="res-tips" class="tips"></ul>
+          <p class="res-closer" id="res-closer"></p>
+        </div>
+      </div>
+      <div class="res-buttons">
+        <button class="btn btn-primary" id="btn-next" data-i18n="next_level"></button>
+        <button class="btn btn-primary" id="btn-retry" data-i18n="retry_same"></button>
+        <button class="btn" id="btn-newlayout" data-i18n="new_layout"></button>
+        <button class="btn btn-ghost" id="btn-levels" data-i18n="level_list"></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-confirm" class="modal hidden">
+    <div class="panel glass narrow">
+      <p id="confirm-text"></p>
+      <div class="row">
+        <button class="btn btn-danger" id="confirm-yes" data-i18n="yes"></button>
+        <button class="btn" id="confirm-no" data-i18n="no"></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="loading" class="hidden"><div class="spinner"></div><span data-i18n="loading"></span></div>
+  <div id="toast"></div>
+
+  <script src="js/physics.js"></script>
+  <script src="js/levelgen.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/analysis.js"></script>
+  <script src="js/tutorial.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
