@@ -3,6 +3,12 @@
 All notable changes to Collapse Factor are documented here.
 This project uses [Semantic Versioning](https://semver.org/).
 
+## [0.1.2] - 2026-11-07
+
+### Changed
+- Recommended age changed from 10+ to 8+ (title screen, credits, README).
+- Version bumped to 0.1.2.
+
 ## [0.1.1] - 2026-11-07
 
 ### Changed

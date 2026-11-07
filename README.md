@@ -9,12 +9,12 @@ the design is finished, or the 300-second (5-minute) build timer runs out, the g
 real vehicle weights and gusty wind. If the structure fails, the game explains the weak
 points in a friendly, encouraging way so the player knows how to improve.
 
-- **Version:** v0.1.1 (released 2026-11-07)
+- **Version:** v0.1.2 (released 2026-11-07)
 - **Creator:** Shawn Rapaz, developed with Claude Code
 - **Website:** https://shoukugames.org/
 - **Contact:** info@shoukugames.org
 - **License:** GNU General Public License v3.0 (see [LICENSE](LICENSE))
-- **Recommended ages:** 10+
+- **Recommended ages:** 8+
 
 ---
 
@@ -78,17 +78,17 @@ points in a friendly, encouraging way so the player knows how to improve.
 
 ## Installing
 
-Prebuilt packages for v0.1.1 are produced in `dist/`:
+Prebuilt packages for v0.1.2 are produced in `dist/`:
 
 | Platform | File |
 | --- | --- |
-| Debian / Ubuntu (x64) | `collapse-factor_0.1.1_amd64.deb` |
-| Windows installer (x64) | `CollapseFactor-Setup-0.1.1.exe` |
-| Windows portable (x64) | `CollapseFactor-Portable-0.1.1.exe` |
+| Debian / Ubuntu (x64) | `collapse-factor_0.1.2_amd64.deb` |
+| Windows installer (x64) | `CollapseFactor-Setup-0.1.2.exe` |
+| Windows portable (x64) | `CollapseFactor-Portable-0.1.2.exe` |
 
 ```bash
 # Debian / Ubuntu
-sudo apt install ./dist/collapse-factor_0.1.1_amd64.deb
+sudo apt install ./dist/collapse-factor_0.1.2_amd64.deb
 collapse-factor
 ```
 
