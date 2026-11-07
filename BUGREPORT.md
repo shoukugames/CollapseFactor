@@ -23,7 +23,7 @@ Please write the subject as: `Collapse Factor bug: <short description>`
 Copy this template into your email and fill in as much as you can:
 
 ```
-Game version:        (e.g. v0.1.0 - shown on the title screen)
+Game version:        (e.g. v0.1.1 - shown on the title screen)
 Operating system:    (e.g. Windows 11, Ubuntu 24.04, Debian 12)
 Install type:        (.deb package / Windows installer / Windows portable / from source)
 Language:            (English / Japanese)

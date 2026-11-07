@@ -321,7 +321,7 @@
       number: n, theme, type, test, seed, difficulty,
       allowedParts: allowedParts(n, theme),
       windScale: 4.0,
-      buildTime: 120
+      buildTime: 300
     };
 
     let geo;

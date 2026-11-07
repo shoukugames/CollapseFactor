@@ -5,11 +5,11 @@
 
 Collapse Factor is a physics-based building puzzle game. Players design bridges over
 rivers, lakes and mountain canyons, and towers that must carry heavy water tanks. When
-the design is finished, or the 120-second build timer runs out, the game tests it with
+the design is finished, or the 300-second (5-minute) build timer runs out, the game tests it with
 real vehicle weights and gusty wind. If the structure fails, the game explains the weak
 points in a friendly, encouraging way so the player knows how to improve.
 
-- **Version:** v0.1.0 (released 2026-11-07)
+- **Version:** v0.1.1 (released 2026-11-07)
 - **Creator:** Shawn Rapaz, developed with Claude Code
 - **Website:** https://shoukugames.org/
 - **Contact:** info@shoukugames.org
@@ -38,6 +38,8 @@ points in a friendly, encouraging way so the player knows how to improve.
 - **Guaranteed solvable.** For each level, the generator designs its own reference
   structure and runs it through the physics engine. If that design fails, the loads are
   eased until it passes. The player's material allowance is based on the verified design.
+- **5 minutes per level.** Each level gives you 300 seconds to build before the test starts
+  (or press **Test!** any time you're ready).
 - **Resource management.** Each part type comes in a limited number of metres. Stars are
   awarded for efficient designs.
 - **Choose the location and angle.** Each bank has several yellow road anchors at
@@ -76,17 +78,17 @@ points in a friendly, encouraging way so the player knows how to improve.
 
 ## Installing
 
-Prebuilt packages for v0.1.0 are produced in `dist/`:
+Prebuilt packages for v0.1.1 are produced in `dist/`:
 
 | Platform | File |
 | --- | --- |
-| Debian / Ubuntu (x64) | `collapse-factor_0.1.0_amd64.deb` |
-| Windows installer (x64) | `CollapseFactor-Setup-0.1.0.exe` |
-| Windows portable (x64) | `CollapseFactor-Portable-0.1.0.exe` |
+| Debian / Ubuntu (x64) | `collapse-factor_0.1.1_amd64.deb` |
+| Windows installer (x64) | `CollapseFactor-Setup-0.1.1.exe` |
+| Windows portable (x64) | `CollapseFactor-Portable-0.1.1.exe` |
 
 ```bash
 # Debian / Ubuntu
-sudo apt install ./dist/collapse-factor_0.1.0_amd64.deb
+sudo apt install ./dist/collapse-factor_0.1.1_amd64.deb
 collapse-factor
 ```
 
@@ -108,6 +110,12 @@ npm run dist         # both
 ```
 
 Build output is written to `dist/`. The `build/` and `dist/` folders are git-ignored.
+
+The README, CHANGELOG, BUGREPORT and LICENSE are installed alongside the game:
+
+- **Linux (.deb):** `/opt/Collapse Factor/resources/`
+- **Windows installer:** `<install folder>\resources\` (the license is also shown during setup)
+- **Windows portable:** inside the portable package's `resources` folder
 
 ## Developer tools
 

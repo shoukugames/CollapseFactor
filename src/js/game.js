@@ -18,7 +18,7 @@
   const Game = {
     state: 'idle', level: null, design: null, sim: null, renderer: null,
     part: null, tool: 'build', drag: null, hover: null, undoStack: [],
-    timeLeft: 120, paused: false, speed: 1, stressView: true, resultShown: false,
+    timeLeft: 300, paused: false, speed: 1, stressView: true, resultShown: false,
     creakT: 0, breakTimes: [], collapsePlayed: false, thudT: 0,
 
     init(renderer, hooks) {

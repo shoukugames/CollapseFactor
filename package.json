@@ -1,7 +1,7 @@
 {
   "name": "collapse-factor",
   "productName": "Collapse Factor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A physics-based bridge and tower building puzzle game. Build with wood, steel and concrete, then survive real weight and wind.",
   "main": "main.js",
   "homepage": "https://shoukugames.org/",
@@ -34,6 +34,12 @@
       "src/**/*",
       "LICENSE",
       "package.json"
+    ],
+    "extraResources": [
+      "README.md",
+      "CHANGELOG.md",
+      "BUGREPORT.md",
+      "LICENSE"
     ],
     "linux": {
       "target": [

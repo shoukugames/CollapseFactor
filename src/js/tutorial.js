@@ -197,7 +197,7 @@
       // cursor
       c.fillStyle = '#fff'; c.strokeStyle = '#000'; c.lineWidth = 1.5;
       c.beginPath(); c.moveTo(cur[0], cur[1]); c.lineTo(cur[0] + 4, cur[1] + 18); c.lineTo(cur[0] + 8, cur[1] + 12); c.lineTo(cur[0] + 15, cur[1] + 14); c.closePath(); c.fill(); c.stroke();
-      label(c, '120', w - 50, 30, 26, '#ffd23c');
+      label(c, '300', w - 50, 30, 26, '#ffd23c');
       c.strokeStyle = '#ffd23c'; c.lineWidth = 4; c.beginPath(); c.arc(w - 50, 30, 24, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * (1 - (t % 12) / 12)); c.stroke();
       label(c, t2('time'), w - 50, 66, 13);
     }

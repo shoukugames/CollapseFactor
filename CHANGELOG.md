@@ -3,6 +3,13 @@
 All notable changes to Collapse Factor are documented here.
 This project uses [Semantic Versioning](https://semver.org/).
 
+## [0.1.1] - 2026-11-07
+
+### Changed
+- Build time per level increased from 120 to 300 seconds (5 minutes) to make levels less stressful.
+- README updated; README, CHANGELOG, BUGREPORT and LICENSE are now installed with the .deb and .exe packages.
+- Version bumped to 0.1.1.
+
 ## [0.1.0] - 2026-11-07
 
 First public release.
