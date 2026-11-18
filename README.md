@@ -76,6 +76,17 @@ points in a friendly, encouraging way so the player knows how to improve.
 | Pause | `Esc` |
 | Full screen | `F11` |
 
+## Play in the browser
+
+Collapse Factor also runs in a web browser, on computers, phones and tablets, with nothing to
+install: <https://shoukugames.org/play/collapse-factor/> (test page). On touch screens, drag
+from an anchor or joint to build, and use Erase to remove parts. Progress is saved in the
+browser.
+
+The `src/` folder is the whole game: serve or upload it as-is. `src/js/web-fit.js` scales the
+layout to fit phone screens (desktop browsers and the app ignore it), and the Quit button is
+hidden in browsers.
+
 ## Installing
 
 Prebuilt packages for v0.1.2 are produced in `dist/`:

@@ -247,6 +247,8 @@
     click('btn-tutorial', () => { tutPage = 0; show('tutorial'); });
     click('btn-parents', () => { parentDiff = null; show('parents'); });
     click('btn-credits', () => show('credits'));
+    // In a web browser there is nothing to quit to (a page can't close its own tab).
+    if (!G.cfNative) { const q = document.getElementById('btn-quit'); if (q) q.style.display = 'none'; }
     click('btn-quit', () => { Store.addTime(timeAcc); timeAcc = 0; Store.save(); if (G.cfNative) G.cfNative.quit(); else G.close(); });
     click('btn-fullscreen', () => { if (G.cfNative) G.cfNative.toggleFullscreen(); else if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen(); });
     click('tut-prev', () => { if (tutPage > 0) { tutPage--; CF.Tutorial.setPage(tutPage); renderTut(); } });

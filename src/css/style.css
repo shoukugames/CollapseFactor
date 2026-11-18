@@ -236,3 +236,6 @@ button { font-family: inherit; }
   .tut-body, .res-body, .brief-cols { grid-template-columns: 1fr; }
   .part { min-width: 100px; }
 }
+
+/* Touch screens: finger drags on the game canvas build beams instead of scrolling the page. */
+#world { touch-action: none; }
