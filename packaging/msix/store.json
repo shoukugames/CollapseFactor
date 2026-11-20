@@ -1,0 +1,12 @@
+{
+ "_note": "Replace identity_name, publisher and publisher_display_name with the values from Partner Center (Product management -> Product identity) before uploading to the Microsoft Store.",
+ "identity_name": "ShoukuGames.CollapseFactor",
+ "publisher": "CN=ShoukuGamesPlaceholder",
+ "publisher_display_name": "Shouku Games",
+ "display_name": "Collapse Factor",
+ "description": "Build bridges and towers from wood, steel and concrete, then watch real vehicle weights and gusty wind put them to the test!",
+ "file_name": "CollapseFactor",
+ "exe_name": "CollapseFactor.exe",
+ "alias": "shouku-collapse-factor.exe",
+ "device_capabilities": []
+}
